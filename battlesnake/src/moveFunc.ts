@@ -1,4 +1,4 @@
-import { GameState, MoveResponse } from '../types';
+import { GameState, MoveResponse } from '../../types';
 
 export function move(gameState: GameState): MoveResponse {
     const isMoveSafe: { [key: string]: boolean } = {

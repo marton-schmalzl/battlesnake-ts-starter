@@ -1,5 +1,6 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
-import { InfoResponse } from '../types';
+import { MoveResponse } from '../../types';
+import { move } from './moveFunc';
 
 /**
  *
@@ -13,16 +14,10 @@ import { InfoResponse } from '../types';
 
 export const lambdaHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
     try {
-        const info: InfoResponse = {
-            author: 'Schmalzl Márton',
-            color: '#aa20aa',
-            apiversion: '1',
-            head: 'caffeine',
-            tail: 'bolt',
-        };
+        const moveResponse: MoveResponse = move(JSON.parse(event.body || ''));
         return {
             statusCode: 200,
-            body: JSON.stringify(info),
+            body: JSON.stringify(moveResponse),
         };
     } catch (err) {
         console.log(err);

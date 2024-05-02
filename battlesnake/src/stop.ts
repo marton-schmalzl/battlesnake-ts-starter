@@ -1,6 +1,5 @@
-import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
-import { MoveResponse } from '../types';
-import { move } from './move';
+import {APIGatewayProxyEvent, APIGatewayProxyResult} from 'aws-lambda';
+import {GameState} from '../../types';
 
 /**
  *
@@ -14,10 +13,10 @@ import { move } from './move';
 
 export const lambdaHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
     try {
-        const moveResponse: MoveResponse = move(JSON.parse(event.body || ''));
+        const gameState: GameState = JSON.parse(event.body || '');
+        console.log(`game stopped, id: ${gameState.game.id}`)
         return {
             statusCode: 200,
-            body: JSON.stringify(moveResponse),
         };
     } catch (err) {
         console.log(err);

@@ -14,8 +14,8 @@ Resources:
   GetInfoFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
-      CodeUri: get-info/
-      Handler: app.lambdaHandler
+      CodeUri: battlesnake
+      Handler: getInfo.lambdaHandler
       Runtime: nodejs20.x
       Architectures:
         - x86_64
@@ -32,12 +32,12 @@ Resources:
         Target: "es2020"
         Sourcemap: true
         EntryPoints: 
-        - app.ts
+        - src/getInfo.ts
   MoveFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
-      CodeUri: move/
-      Handler: app.lambdaHandler
+      CodeUri: battlesnake
+      Handler: move.lambdaHandler
       Runtime: nodejs20.x
       Architectures:
         - x86_64
@@ -54,13 +54,13 @@ Resources:
         Target: "es2020"
         Sourcemap: true
         EntryPoints:
-          - app.ts
+          - src/move.ts
 
   StartFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
-      CodeUri: start/
-      Handler: app.lambdaHandler
+      CodeUri: battlesnake/
+      Handler: start.lambdaHandler
       Runtime: nodejs20.x
       Architectures:
         - x86_64
@@ -77,13 +77,13 @@ Resources:
         Target: "es2020"
         Sourcemap: true
         EntryPoints:
-          - app.ts
+          - src/start.ts
 
   EndFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
-      CodeUri: stop/
-      Handler: app.lambdaHandler
+      CodeUri: battlesnake/
+      Handler: stop.lambdaHandler
       Runtime: nodejs20.x
       Architectures:
         - x86_64
@@ -100,7 +100,7 @@ Resources:
         Target: "es2020"
         Sourcemap: true
         EntryPoints:
-          - app.ts
+          - src/stop.ts
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
